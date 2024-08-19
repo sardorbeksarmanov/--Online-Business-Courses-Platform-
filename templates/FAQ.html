@@ -1,0 +1,40 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section py-5">
+        <div class="container py-5 overflow-hidden">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">FAQs</h4>
+                <h1 class="display-5 mb-4">Frequently Asked Questions</h1>
+                <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.</p>
+            </div>
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
+                    <div class="accordion accordion-flush bg-light rounded p-5" id="accordionFlushSection">
+                        {% for faq in faqs %}
+                        <div class="accordion-item {% if forloop.first %}rounded-top{% endif %}">
+                            <h2 class="accordion-header" id="flush-heading{{ forloop.counter }}">
+                                <button class="accordion-button collapsed {% if forloop.first %}rounded-top{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
+                                    {{ faq.questions }}
+                                </button>
+                            </h2>
+                            <div id="flush-collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ forloop.counter }}" data-bs-parent="#accordionFlushSection">
+                                <div class="accordion-body">{{ faq.answers }}</div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
+                    <div class="bg-primary rounded">
+                        <img src="img/about-2.png" class="img-fluid w-100" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+
+{% endblock %}

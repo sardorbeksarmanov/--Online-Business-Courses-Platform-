@@ -1,0 +1,217 @@
+    {% extends 'main/base.html' %}
+    {% load static %}
+    {% block content %}
+
+        <!-- Services Start -->
+        <div class="container-fluid service pb-5">
+            <div class="container pb-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-primary">Our Services</h4>
+                    <h1 class="display-5 mb-4">Biz xizmatlar eng yaxshi taklifni taqdim etdik</h1>
+                    <p class="mb-0">
+                    </p>
+                </div>
+                <div class="row g-4">
+                    {% for serve in serves %}
+                    <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
+                        <div class="service-item">
+                            <div class="service-img">
+                                <img src="{{ serve.image }}" class="img-fluid rounded-top w-100" alt="Image">
+                            </div>
+                            <div class="rounded-bottom p-4">
+                                <a href="#" class="h4 d-inline-block mb-4"> {{ serve.title }}</a>
+                                <p class="mb-4">{{ serve.description }} {{ serve.prize }}
+                                </p>
+                                <a class="btn btn-primary rounded-pill py-2 px-4" href="#">Learn More</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Services End -->
+
+        <!-- Features Start -->
+    <div class="container-fluid feature py-5">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">Our Features</h4>
+                <h1 class="display-5 mb-4">Ko'proq ta'sir qilish uchun biznes, g'oyalar va odamlarni bog'lash.</h1>
+                <p class="mb-0"></p>
+            </div>
+            <div class="row g-4">
+                {% for feature in features %}
+                <div class="col-md-6 col-lg-6 col-xl-3 wow fadeInUp" data-wow-delay="0.8s">
+                    <div class="feature-item p-4">
+                        <div class="feature-icon p-4 mb-4">
+                            <i class="fas fa-hand-holding-usd fa-4x text-primary"></i>
+                        </div>
+                        <!-- Serves modelidagi title ni ko'rsatish uchun -->
+                        <h4>{{ feature.title.title }}</h4>
+                        <p class="mb-4">{{ feature.description }}</p>
+                        <!-- LEARN MORE tugmasi Serves bo'limiga yo'naltiradi -->
+                        <a class="btn btn-primary rounded-pill py-2 px-4" href="{% url 'serves' %}">Learn More</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+        <!-- Advisors Section Start -->
+    <div class="container-fluid blog py-5">
+        <div class="container py-5">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">Our Advisors</h4>
+                <h1 class="display-5 mb-4">Mutaxassis maslahatchilarimiz bilan tanishing</h1>
+                <p class="mb-0">Bizning maslahatchilarimiz o'z sohalarida mutaxassislar bo'lib, sizga eng yaxshi maslahat va yordamni taklif qilishadi.
+</p>
+            </div>
+            <div class="owl-carousel blog-carousel wow fadeInUp" data-wow-delay="0.2s">
+                {% for advis in advises %}
+                    <div class="blog-item p-4">
+                        <div class="blog-img mb-4">
+                            <!-- Rasmni ko'rsatish -->
+                            <img src="{{ advis.image }}" class="img-fluid w-100 rounded" alt="{{ advis.first_name }} {{ advis.last_name }}">
+                        </div>
+                        <!-- Ism, familiya va level -->
+                        <h4 class="d-inline-block mb-3">{{ advis.first_name }} {{ advis.last_name }}</h4>
+                        <!-- Level matnini URL bilan bog'lash -->
+                        <p class="mb-2"><a href="{% url 'feature' %}" class="text-primary">{{ advis.level }}</a></p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Advisors Section End -->
+
+
+
+    <!-- FAQs Start -->
+    <div class="container-fluid faq-section py-5">
+        <div class="container py-5 overflow-hidden">
+            <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                <h4 class="text-primary">FAQs</h4>
+                <h1 class="display-5 mb-4">Eng kup suraladigan savollar</h1>
+                <p class="mb-0"></p>
+            </div>
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
+                    <div class="accordion accordion-flush bg-light rounded p-5" id="accordionFlushSection">
+                        {% for faq in faqs %}
+                        <div class="accordion-item {% if forloop.first %}rounded-top{% endif %}">
+                            <h2 class="accordion-header" id="flush-heading{{ forloop.counter }}">
+                                <button class="accordion-button collapsed {% if forloop.first %}rounded-top{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ forloop.counter }}" aria-expanded="false" aria-controls="flush-collapse{{ forloop.counter }}">
+                                    {{ faq.questions }}
+                                </button>
+                            </h2>
+                            <div id="flush-collapse{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="flush-heading{{ forloop.counter }}" data-bs-parent="#accordionFlushSection">
+                                <div class="accordion-body">{{ faq.answers }}</div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
+                    <div class="bg-primary rounded">
+                        <img src="img/about-2.png" class="img-fluid w-100" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+
+     <!-- Testimonial Start -->
+        <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-primary">Testimonial</h4>
+                    <h1 class="display-5 mb-4">Our Clients Riviews</h1>
+                    <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.
+                    </p>
+                </div>
+                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.2s">
+                    {% for client in clients %}
+                        <div class="testimonial-item">
+                            <div class="testimonial-quote-left">
+                                <i class="fas fa-quote-left fa-2x"></i>
+                            </div>
+                            <div class="testimonial-img">
+                                <img src="{{client.image}}" class="img-fluid" alt="Image">
+                            </div>
+                            <div class="testimonial-text">
+                                <p class="mb-0">{{ client.defination }}
+                                </p>
+                            </div>
+                            <div class="testimonial-title">
+                                <div>
+                                    <h4 class="mb-0">{{ client.username }}</h4>
+                                    <p class="mb-0"></p>
+                                </div>
+                                <div class="d-flex text-primary">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-quote-right">
+                                <i class="fas fa-quote-right fa-2x"></i>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+
+    <!-- Testimonial Start -->
+        <div class="container-fluid testimonial py-5">
+            <div class="container py-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-primary">Testimonial</h4>
+                    <h1 class="display-5 mb-4">Our Clients Riviews</h1>
+                    <p class="mb-0">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur adipisci facilis cupiditate recusandae aperiam temporibus corporis itaque quis facere, numquam, ad culpa deserunt sint dolorem autem obcaecati, ipsam mollitia hic.
+                    </p>
+                </div>
+                <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.2s">
+                    {% for coment in comment %}
+                        <div class="testimonial-item">
+                            <div class="testimonial-quote-left">
+                                <i class="fas fa-quote-left fa-2x"></i>
+                            </div>
+
+                            <div class="testimonial-text">
+                                <p class="mb-0">
+                                </p>
+                            </div>
+                            <div class="testimonial-title">
+                                <div>
+                                    <h4 class="mb-0"><br>{{ coment.clients.username }}</h4>
+                                    <p class="mb-0"></p>{{ coment.serves.title }} {{ coment.rating }}
+                                    {{ coment.comment }}
+                                </div>
+                                <div class="d-flex text-primary">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                            <div class="testimonial-quote-right">
+                                <i class="fas fa-quote-right fa-2x"></i>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <!-- Testimonial End -->
+
+    {% endblock %}
+
